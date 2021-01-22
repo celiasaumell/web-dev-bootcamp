@@ -15,9 +15,13 @@ while (inp !== "quit" && inp !== "q") {
     };
 
   } else if (inp === "delete" || inp === "delete") {
-    let delInput = prompt("what task would you like to delete? Enter index");
-    console.log(`${toDo[delInput]} will be deleted`)
-    toDo.splice(delInput, 1);
+    let delInput = parseInt(prompt("what task would you like to delete? Enter index"));
+    if (!Number.isNaN(delInput)) {
+      console.log(`${toDo[delInput]} will be deleted`)
+      toDo.splice(delInput, 1);
+    } else {
+      console.log("That is an unknown index.")
+    }
   }   
 
   inp = prompt("Action")
