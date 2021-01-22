@@ -16,8 +16,8 @@ while (inp !== "quit" && inp !== "q") {
 
   } else if (inp === "delete" || inp === "delete") {
     let delInput = prompt("what task would you like to delete? Enter index");
+    console.log(`${toDo[delInput]} will be deleted`)
     toDo.splice(delInput, 1);
-    console.log(`${delInput} was deleted`)
   }   
 
   inp = prompt("Action")
