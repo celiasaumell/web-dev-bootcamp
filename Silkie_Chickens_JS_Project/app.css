@@ -3,6 +3,14 @@ body {
     margin: 0 auto;
 }
 
+.pink {
+    color: rgb(255, 8, 140);
+}
+
+.border {
+    border: 3px solid rgb(160, 252, 0);
+}
+
 #banner {
     width: 100%;
 }
@@ -26,3 +34,4 @@ img.square {
 .tocnumber {
     color: black;
 }
+
