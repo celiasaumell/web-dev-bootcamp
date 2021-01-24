@@ -1,0 +1,39 @@
+html {
+    font-family: monospace;
+    font-weight: lighter;
+    background-color: #b6005b; 
+    color: white;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    padding-top: 30px;
+    margin-top:0;
+}
+
+#container {
+    width: 75%;   
+    margin: 0 auto;
+    background-color: #302229;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.pokemon {
+    display: inline-block;
+    text-align: center;
+    padding:15px;
+}
+
+.pokemon img {
+    display: block;
+}
+
+.pokemon span {
+    position: absolute;
+    transform: translate(-14px,-13px);
+}
+

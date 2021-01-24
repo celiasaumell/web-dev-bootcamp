@@ -49,12 +49,28 @@ const newB = document.createElement('b');
 newB.append('Hi! ');
 p.prepend(newB);
 
+//insertAdjacentElement(afterend, elem) is like after
 const newH2 = document.createElement('h2');
 newH2.append('Are adorable chickens');
 const h1 = document.querySelector('h1');
 h1.insertAdjacentElement('afterend', newH2);
 const h3 = document.createElement('h3');
 h3.append('I am h3');
-h1.after(h3)
+h1.after(h3);
 
-//insertAdjacentElement(afterend, elem) is like after
+
+//select parent then call removeChild
+const body = document.querySelector('body');
+const bodyImg = document.querySelector('img');
+body.removeChild(bodyImg);
+
+
+const ul = document.querySelector('ul');
+const secondLi = document.querySelector('li').nextElementSibling;
+ul.removeChild(secondLi);
+
+//remove an element in one go
+h3.parentElement.removeChild(h3);
+
+const img = document.querySelector('img');
+img.remove();
