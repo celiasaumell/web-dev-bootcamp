@@ -3,13 +3,18 @@ const p2Display = document.querySelector("#p2Display");
 const p1 = document.querySelector("#player1");
 const p2 = document.querySelector("#player2");
 const reset = document.querySelector("#reset");
-const gameSelect = document.querySelectorAll("#game-select");
+const winningScoreSelect = document.querySelector("#playto");
 
 let p1Score = 0;
 let p2Score = 0;
 
-let winningScore = 5;
+let winningScore = 3;
 let isGameOver = false;
+
+winningScoreSelect.addEventListener('change', (e) =>{
+    winningScore = parseInt(e.target.value);
+    resetGame();
+})
 
 p1.addEventListener("click", () => {
   if (!isGameOver) {
@@ -32,3 +37,12 @@ p2.addEventListener("click", () => {
     }
   });
   
+reset.addEventListener('click', resetGame);
+
+function  resetGame() {
+    isGameOver = false;
+    p1Score = 0;
+    p2Score = 0;
+    p1Display.textContent = 0;
+    p2Display.textContent = 0;
+  }

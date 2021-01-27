@@ -3,28 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Ping Pong Score Keeper</title>
   </head>
   <body>
-      <h1><span id="p1Display">0</span> to <span id="p2Display">0</span></h1>
+    <h1><span id="p1Display">0</span> to <span id="p2Display">0</span></h1>
 
     <section id="container">
       <p>Use the buttons below to keep Score</p>
-      <label for="game-select">Playing To</label>
-      <select name="game-select" id="game-select">
+
+      <select name="" id="playto">
+        <option value="3">3</option>
+        <option value="4">4</option>
         <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
+        <option value="11">11</option>
       </select>
     </section>
 
     <button id="player1">+1 Player One</button>
     <button id="player2">+1 Player Two</button>
-    <button id="reset-score">Reset</button>
+    <button id="reset">Reset</button>
 
     <script src="app.js"></script>
   </body>
