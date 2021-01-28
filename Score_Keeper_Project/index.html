@@ -3,31 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="style.css" />
     <title>Ping Pong Score Keeper</title>
   </head>
   <body>
+    <div class="container">
+      <div class="columns">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">Component</p>
+            <button class="card-header-icon" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              nec iaculis mauris.
+              <a href="#">@bulmaio</a>. <a href="#">#css</a>
+              <a href="#">#responsive</a>
+              <br />
+              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <button id="player1" class="card-footer-item is-primary button">+1 Player One</button>
+            <button id="player2" class="card-footer-item is-info button">+1 Player Two</button>
+            <button id="reset" class="card-footer-item is-danger button">Reset</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
     <h1><span id="p1Display">0</span> to <span id="p2Display">0</span></h1>
 
-    <section id="container">
-      <p>Use the buttons below to keep Score</p>
+    <p>Use the buttons below to keep Score</p>
 
-      <select name="" id="playto">
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-      </select>
-    </section>
+    <select name="" id="playto">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
 
-    <button id="player1">+1 Player One</button>
-    <button id="player2">+1 Player Two</button>
-    <button id="reset">Reset</button>
+
 
     <script src="app.js"></script>
   </body>
