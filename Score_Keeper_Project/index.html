@@ -27,11 +27,46 @@
               </header>
               <div class="card-content">
                 <div class="content">
+                  <div class="columns">
+                    <div class="column">
+                      <input
+                        class="input is-rounded"
+                        id="p1Name"
+                        type="text"
+                        placeholder="Player 1"
+                      />
+                    </div>
+                    <div class="column is-1 is-align-content-center">
+                      <p class="is-size-4">vs.</p>
+                    </div>
+                    <div class="column">
+                      <input
+                        class="input is-rounded"
+                        id="p2Name"
+                        type="text"
+                        placeholder="Player 2"
+                      />
+                    </div>
+                  </div>
+                  <label for="playto" class="label is-large is-inline">
+                    Choose Game
+                  </label>
+                  <div class="select is-rounded">
+                    <select name="" id="game">
+                      <option value="2out3" selected="selected">
+                        2 out of 3
+                      </option>
+                      <option value="3out5">3 out of 5</option>
+                    </select>
+                  </div>
+                  <p id="best"></p>
+                  <table class="table"></table>
+
                   <h1>
+                    Current Game Score:
                     <span id="p1Display">0</span> to
                     <span id="p2Display">0</span>
                   </h1>
-
                   <p>Use the buttons below to keep score</p>
                   <label for="playto" class="label is-large is-inline">
                     Playing to

@@ -2,16 +2,20 @@ const p1 = {
   score: 0,
   button: document.querySelector("#player1"),
   display: document.querySelector("#p1Display"),
+  playerName: document.querySelector("p1Name")
 }
 
 const p2 = {
   score: 0,
   button: document.querySelector("#player2"),
   display: document.querySelector("#p2Display"),
+  playerName: document.querySelector("p2Name")
 }
 
 const reset = document.querySelector("#reset");
 const winningScoreSelect = document.querySelector("#playto");
+const gameSelect = document.querySelector('#game');
+const gameDisplay = document.querySelector('#best');
 
 
 
@@ -57,4 +61,6 @@ function resetGame() {
   p2.display.classList.remove("has-text-success", "has-text-danger");
   p1.button.disabled = false;
   p2.button.disabled = false;
+  p1.playerName.textContent = '';
+  p2.playerName.textContent = '';
 }
