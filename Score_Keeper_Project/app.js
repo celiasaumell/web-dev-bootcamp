@@ -11,45 +11,49 @@ let p2Score = 0;
 let winningScore = 3;
 let isGameOver = false;
 
-winningScoreSelect.addEventListener('change', function () {
-    winningScore = parseInt(this.value);
-    resetGame();
-})
+winningScoreSelect.addEventListener("change", function () {
+  winningScore = parseInt(this.value);
+  resetGame();
+});
 
 p1.addEventListener("click", () => {
   if (!isGameOver) {
     p1Score++;
     if (p1Score === winningScore) {
       isGameOver = true;
-      p1Display.classList.add('winner');
-      p2Display.classList.add('loser');
+      p1Display.classList.add("has-text-success");
+      p2Display.classList.add("has-text-danger");
+      p1.disabled = true;
+      p2.disabled = true;
     }
     p1Display.textContent = p1Score;
   }
 });
 
-
 p2.addEventListener("click", () => {
-    if (!isGameOver) {
-      p2Score++;
-      if (p2Score === winningScore) {
-        isGameOver = true;
-        p2Display.classList.add('winner');
-        p1Display.classList.add('loser')
-
-      }
-      p2Display.textContent = p2Score;
+  if (!isGameOver) {
+    p2Score++;
+    if (p2Score === winningScore) {
+      isGameOver = true;
+      p2Display.classList.add("has-text-success");
+      p1Display.classList.add("has-text-danger");
+      p1.disabled = true;
+      p2.disabled = true;
     }
-  });
-  
-reset.addEventListener('click', resetGame);
-
-function  resetGame() {
-    isGameOver = false;
-    p1Score = 0;
-    p2Score = 0;
-    p1Display.textContent = 0;
-    p2Display.textContent = 0;
-    p1Display.classList.remove('winner', 'loser')
-    p2Display.classList.remove('winner', 'loser')
+    p2Display.textContent = p2Score;
   }
+});
+
+reset.addEventListener("click", resetGame);
+
+function resetGame() {
+  isGameOver = false;
+  p1Score = 0;
+  p2Score = 0;
+  p1Display.textContent = 0;
+  p2Display.textContent = 0;
+  p1Display.classList.remove("has-text-success", "has-text-danger");
+  p2Display.classList.remove("has-text-success", "has-text-danger");
+  p1.disabled = false;
+  p2.disabled = false;
+}
