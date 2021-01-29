@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
+    <link rel="stylesheet" href="style.css" />
     <title>Ping Pong Score Keeper</title>
   </head>
   <body>
@@ -28,54 +29,71 @@
               <div class="card-content">
                 <div class="content">
                   <div class="columns">
-                    <div class="column">
-                      <input
-                        class="input is-rounded"
-                        id="p1Name"
-                        type="text"
-                        placeholder="Player 1"
-                      />
-                    </div>
-                    <div class="column is-1 is-align-content-center">
-                      <p class="is-size-4">vs.</p>
-                    </div>
-                    <div class="column">
-                      <input
-                        class="input is-rounded"
-                        id="p2Name"
-                        type="text"
-                        placeholder="Player 2"
-                      />
-                    </div>
+                    <form id="competition">
+                      <div class="column">
+                        <input
+                          class="input is-rounded"
+                          name="p1Name"
+                          type="text"
+                          placeholder="Player 1"
+                        />
+                      </div>
+                      <div class="column is-1 is-align-content-center">
+                        <p class="is-size-4">vs.</p>
+                      </div>
+                      <div class="column">
+                        <input
+                          class="input is-rounded"
+                          name="p2Name"
+                          type="text"
+                          placeholder="Player 2"
+                        />
+                      </div>
+
+                      <label for="playto" class="label is-large is-inline">
+                        Choose Game
+                      </label>
+                      <div class="select is-rounded">
+                        <select name="" id="game">
+                          <option value="2out3" selected="selected">
+                            2 out of 3
+                          </option>
+                          <option value="3out5">3 out of 5</option>
+                        </select>
+                      </div>
+                      <button
+                        class="button is-primary"
+                        type="submit"
+                        id="startgame"
+                      >
+                        Start Game!
+                      </button>
+                      <button
+                        class="button is-secondary"
+                        type="submit"
+                        id="endgame"
+                      >
+                        End Game!
+                      </button>
+                    </form>
                   </div>
-                  <label for="playto" class="label is-large is-inline">
-                    Choose Game
-                  </label>
-                  <div class="select is-rounded">
-                    <select name="" id="game">
-                      <option value="2out3" selected="selected">
-                        2 out of 3
-                      </option>
-                      <option value="3out5">3 out of 5</option>
-                    </select>
-                  </div>
+                </div>
+                <div class="is-hidden" id="gamecontainer">
                   <p id="bestoutof">Best 2 out of 3</p>
                   <table class="table is-striped is-fullwidth">
                     <tr>
                       <th>Player</th>
                       <th>Winner</th>
                     </tr>
-                    <tr id="p1Outcome">
-                      <th></th>
-                      <th class="img-winner"></th>
+                    <tr>
+                      <th class="player-name"></th>
+                      <th id="p1winner" class="block"></th>
                     </tr>
-                    <tr id="p2Outcome">
-                      <th class="img-winner"></th>
-                      <th></th>
+                    <tr>
+                      <th class="player-name"></th>
+                      <th id="p2winner" class="block"></th>
                     </tr>
-                    
                   </table>
-
                   <h1>
                     Current Game Score:
                     <span id="p1Display">0</span> to
@@ -98,28 +116,29 @@
                       <option value="11">11</option>
                     </select>
                   </div>
+
+                  <footer class="card-footer">
+                    <button
+                      id="player1"
+                      class="card-footer-item is-primary button is-large"
+                    >
+                      +1 Player One
+                    </button>
+                    <button
+                      id="player2"
+                      class="card-footer-item is-info button is-large"
+                    >
+                      +1 Player Two
+                    </button>
+                    <button
+                      id="reset"
+                      class="card-footer-item is-danger button is-large"
+                    >
+                      Reset
+                    </button>
+                  </footer>
                 </div>
               </div>
-              <footer class="card-footer">
-                <button
-                  id="player1"
-                  class="card-footer-item is-primary button is-large"
-                >
-                  +1 Player One
-                </button>
-                <button
-                  id="player2"
-                  class="card-footer-item is-info button is-large"
-                >
-                  +1 Player Two
-                </button>
-                <button
-                  id="reset"
-                  class="card-footer-item is-danger button is-large"
-                >
-                  Reset
-                </button>
-              </footer>
             </div>
           </div>
         </div>
