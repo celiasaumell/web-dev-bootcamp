@@ -1,23 +1,36 @@
+window.onload = document.getElementById("game").options[0].selected =
+  "selected";
+window.onload = document.getElementById("playto").options[0].selected =
+  "selected";
+  
 const p1 = {
   score: 0,
   button: document.querySelector("#player1"),
   display: document.querySelector("#p1Display"),
-  playerName: document.querySelector("p1Name")
-}
+  name: document.querySelector("#p1Name"),
+  outcome: document.querySelector("#p1Outcome"),
+};
 
 const p2 = {
   score: 0,
   button: document.querySelector("#player2"),
   display: document.querySelector("#p2Display"),
-  playerName: document.querySelector("p2Name")
-}
+  name: document.querySelector("#p2Name"),
+  outcome: document.querySelector("#p2Outcome"),
+};
 
 const reset = document.querySelector("#reset");
 const winningScoreSelect = document.querySelector("#playto");
-const gameSelect = document.querySelector('#game');
-const gameDisplay = document.querySelector('#best');
+const gameSelect = document.querySelector("#game");
+const gameDisplay = document.querySelector("#bestoutof");
 
-
+gameSelect.addEventListener("change", (e) => {
+  if (e.target.value === "3out5") {
+    gameDisplay.textContent = "Best 3 out of 5";
+  } else {
+    gameDisplay.textContent = "Best 2 out of 3";
+  }
+});
 
 let winningScore = 3;
 let isGameOver = false;
@@ -27,7 +40,7 @@ winningScoreSelect.addEventListener("change", function () {
   resetGame();
 });
 
-function updateScores(player, opponent){
+function updateScores(player, opponent) {
   if (!isGameOver) {
     player.score++;
     if (player.score === winningScore) {
@@ -61,6 +74,6 @@ function resetGame() {
   p2.display.classList.remove("has-text-success", "has-text-danger");
   p1.button.disabled = false;
   p2.button.disabled = false;
-  p1.playerName.textContent = '';
-  p2.playerName.textContent = '';
+  p1.playerName.textContent = "";
+  p2.playerName.textContent = "";
 }
