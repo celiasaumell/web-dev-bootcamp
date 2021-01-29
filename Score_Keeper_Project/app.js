@@ -28,6 +28,9 @@ window.onload = document.getElementById("game").options[0].selected =
   "selected";
 window.onload = document.getElementById("playto").options[0].selected =
   "selected";
+window.onload = form.reset();
+
+
 end.disabled = true;
 let winningScore = 3;
 let isGameOver = false;
@@ -44,17 +47,16 @@ start.addEventListener("click", function (e) {
   start.disabled = true;
 });
 
-end.addEventListener('click', function(e){
+end.addEventListener("click", function (e) {
   e.preventDefault();
-  container.classList.toggle('is-hidden');
+  container.classList.toggle("is-hidden");
   p1.name = null;
   p2.name = null;
   form.reset();
   resetGame();
   end.disabled = true;
   start.disabled = false;
-})
-
+});
 
 gameSelect.addEventListener("change", (e) => {
   if (e.target.value === "3out5") {
@@ -63,7 +65,6 @@ gameSelect.addEventListener("change", (e) => {
     gameDisplay.textContent = "Best 2 out of 3";
   }
 });
-
 
 winningScoreSelect.addEventListener("change", function () {
   winningScore = parseInt(this.value);
