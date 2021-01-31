@@ -1,12 +1,13 @@
 const form = document.querySelector("#competition");
 const reset = document.querySelector("#reset");
 const winningScoreSelect = document.querySelector("#playto");
-const gameSelect = document.querySelector("#game");
 const gameDisplay = document.querySelector("#bestoutof");
 const outcomes = document.querySelectorAll(".player-name");
 const start = document.querySelector("#startgame");
 const end = document.querySelector("#endgame");
 const container = document.querySelector("#gamecontainer");
+//const gameSelect = document.querySelector("#game");
+//const tableHead = document.querySelector("#tableHeading")
 
 const p1 = {
   score: 0,
@@ -14,6 +15,7 @@ const p1 = {
   display: document.querySelector("#p1Display"),
   name: form.elements.p1Name.value,
   displayWin: document.querySelector("#p1winner"),
+  displayTable: document.querySelector("#p1"),
 };
 
 const p2 = {
@@ -22,19 +24,18 @@ const p2 = {
   display: document.querySelector("#p2Display"),
   name: form.elements.p2Name.value,
   displayWin: document.querySelector("#p2winner"),
+  displayTable: document.querySelector("#p2"),
 };
 
-window.onload = document.getElementById("game").options[0].selected =
-  "selected";
+//window.onload = document.getElementById("game").options[0].selected =
+//  "selected";
 window.onload = document.getElementById("playto").options[0].selected =
   "selected";
 window.onload = form.reset();
 
-
 end.disabled = true;
 let winningScore = 3;
 let isGameOver = false;
-
 
 start.addEventListener("click", function (e) {
   e.preventDefault();
@@ -58,13 +59,14 @@ end.addEventListener("click", function (e) {
   start.disabled = false;
 });
 
-gameSelect.addEventListener("change", (e) => {
-  if (e.target.value === "3out5") {
-    gameDisplay.textContent = "Best 3 out of 5";
-  } else {
-    gameDisplay.textContent = "Best 2 out of 3";
-  }
-});
+// gameSelect.addEventListener("change", (e) => {
+//   if (e.target.value === "3out5") {
+//     gameDisplay.textContent = "Best 3 out of 5";
+//   } else {
+//     gameDisplay.textContent = "Best 2 out of 3";
+
+//   }
+// });
 
 winningScoreSelect.addEventListener("change", function () {
   winningScore = parseInt(this.value);
@@ -109,3 +111,13 @@ function resetGame() {
   p1.button.disabled = false;
   p2.button.disabled = false;
 }
+
+// let heading = document.createElement('TD');
+// let pOutcome = documents.createElement('TD');
+// let oOutcome = document.createElement('TD');
+// heading.textContent = "1";
+// pOutcome.textContent = "Won!";
+// oOutcome.textContent = "Lost!";
+// tableHead.appendChild(heading);
+// player.displayTable.appendChild(pOutcome);
+// opponent.displayTable.appendChild(oOutcome);

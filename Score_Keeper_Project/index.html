@@ -50,7 +50,7 @@
                         />
                       </div>
 
-                      <label for="playto" class="label is-large is-inline">
+                      <!-- <label for="playto" class="label is-large is-inline">
                         Choose Game
                       </label>
                       <div class="select is-rounded">
@@ -59,6 +59,22 @@
                             2 out of 3
                           </option>
                           <option value="3out5">3 out of 5</option>
+                        </select>
+                      </div> -->
+                      <label for="playto" class="label is-large is-inline">
+                        Playing to
+                      </label>
+                      <div class="select is-rounded">
+                        <select name="" id="playto">
+                          <option value="3" selected="selected">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
                         </select>
                       </div>
                       <button
@@ -79,19 +95,18 @@
                   </div>
                 </div>
                 <div class="is-hidden" id="gamecontainer">
-                  <p id="bestoutof">Best 2 out of 3</p>
                   <table class="table is-striped is-fullwidth">
-                    <tr>
+                    <tr id="tableHeading">
                       <th>Player</th>
                       <th>Winner</th>
                     </tr>
-                    <tr>
-                      <th class="player-name"></th>
-                      <th id="p1winner" class="block"></th>
+                    <tr id="p1">
+                      <td class="player-name"></th>
+                      <td id="p1winner" class="block"></th>
                     </tr>
-                    <tr>
-                      <th class="player-name"></th>
-                      <th id="p2winner" class="block"></th>
+                    <tr id="p2">
+                      <td class="player-name"></th>
+                      <td id="p2winner" class="block"></th>
                     </tr>
                   </table>
                   <h1>
@@ -100,22 +115,7 @@
                     <span id="p2Display">0</span>
                   </h1>
                   <p>Use the buttons below to keep score</p>
-                  <label for="playto" class="label is-large is-inline">
-                    Playing to
-                  </label>
-                  <div class="select is-rounded">
-                    <select name="" id="playto">
-                      <option value="3" selected="selected">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                    </select>
-                  </div>
+
 
                   <footer class="card-footer">
                     <button
