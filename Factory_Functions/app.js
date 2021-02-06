@@ -15,3 +15,5 @@ function makeColor(f, g, b) {
 }
 
 const firstColor = makeColor(35, 255, 150);
+firstColor.rgb();
+firstColor.hex();
