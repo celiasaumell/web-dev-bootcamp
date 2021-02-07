@@ -25,4 +25,34 @@ class Color {
   }
 }
 
-const red = new Color(255, 67, 89, 'tomato');
+const red = new Color(255, 67, 89, "tomato");
+
+class Pet {
+  constructor(name, age) {
+    console.log("in pet constructor");
+    this.name = name;
+    this.age = age;
+  }
+  eat() {
+    return `${this.name} is eating`;
+  }
+}
+class Cat extends Pet {
+  constructor(name, age, livesLeft = 9) {
+    console.log("in cat constructor");
+    super(name, age);
+    this.livesLeft = livesLeft;
+  }
+  meow() {
+    return "meowww";
+  }
+}
+
+class Dog extends Pet {
+  woof() {
+    return "woooof";
+  }
+  eat() {
+    return `${this.name} is scarfing down his food`;
+  }
+}
