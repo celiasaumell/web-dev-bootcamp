@@ -11,13 +11,23 @@ app.get("/", (req, res) => {
   console.log("ROOT ROUTE");
   res.send("Welcome to our homepage");
 });
+//use : to create a path pattern
+app.get("/r/:subreddit/", (req, res) => {
+  const { subreddit } = req.params;
+  res.send(`<h1>Viewing the ${subreddit} subreddit</h1>`);
+})
+
+app.get("/r/:subreddit/:postId", (req, res) => {
+  const { subreddit, postId } = req.params;
+  res.send(`<h1>Viewing the Post Id ${postId} on ${subreddit}</h1>`);
+})
 
 app.get("/cats", (req, res) => {
   console.log("CAT REQUEST");
   res.send("meow");
 });
 
-//this .post will still be as is if '*' in app.get was first..
+//this .post will still be as is if '*' in app.get was first because this is a post not a get..
 app.post("/cats", (req, res) => {
   console.log("CAT POST REQUEST");
   res.send("This is different than a get request");
@@ -27,7 +37,7 @@ app.get("/dogs", (req, res) => {
   console.log("DOG REQUEST");
   res.send("woof");
 });
-
+//matches every single request
 app.get("*", (req, res) => {
   res.send("I don't know that path.");
 });
