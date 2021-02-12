@@ -9,18 +9,18 @@ const port = 3000;
 // });
 app.get("/", (req, res) => {
   console.log("ROOT ROUTE");
-  res.send("Welcome to our homepage");
+  res.send("Welcome to our homepage!!!!!!!!");
 });
 //use : to create a path pattern
 app.get("/r/:subreddit/", (req, res) => {
   const { subreddit } = req.params;
   res.send(`<h1>Viewing the ${subreddit} subreddit</h1>`);
-})
+});
 
 app.get("/r/:subreddit/:postId", (req, res) => {
   const { subreddit, postId } = req.params;
   res.send(`<h1>Viewing the Post Id ${postId} on ${subreddit}</h1>`);
-})
+});
 
 app.get("/cats", (req, res) => {
   console.log("CAT REQUEST");
@@ -36,6 +36,11 @@ app.post("/cats", (req, res) => {
 app.get("/dogs", (req, res) => {
   console.log("DOG REQUEST");
   res.send("woof");
+});
+
+app.get("/search", (req, res) => {
+  const { q } = req.query;
+  res.send(`<h1>Search results for: ${q}</h1>`)
 });
 //matches every single request
 app.get("*", (req, res) => {
