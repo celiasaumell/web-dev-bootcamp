@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const port = 3000;
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
+
 //   app.use((req, res) => {
 //   console.log("WE GOT A NEW REQUEST");
 //   //res.send("HELLO, WE GOT YOUR REQUEST! THIS IS A RESPONSE");
@@ -9,8 +14,14 @@ const port = 3000;
 // });
 app.get("/", (req, res) => {
   console.log("ROOT ROUTE");
-  res.send("Welcome to our homepage!!!!!!!!");
+  res.render("home");
 });
+
+app.get("/rand", (req, res) => {
+  const num =  Math.floor(Math. random()*10) + 1;
+  res.render("rand", {rand: num});
+});
+
 //use : to create a path pattern
 app.get("/r/:subreddit/", (req, res) => {
   const { subreddit } = req.params;
@@ -40,7 +51,7 @@ app.get("/dogs", (req, res) => {
 
 app.get("/search", (req, res) => {
   const { q } = req.query;
-  res.send(`<h1>Search results for: ${q}</h1>`)
+  res.send(`<h1>Search results for: ${q}</h1>`);
 });
 //matches every single request
 app.get("*", (req, res) => {
