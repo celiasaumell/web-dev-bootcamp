@@ -18,21 +18,20 @@ app.get("/", (req, res) => {
 });
 
 app.get("/rand", (req, res) => {
-  const num =  Math.floor(Math. random()*10) + 1;
-  res.render("rand", {rand: num});
+  const num = Math.floor(Math.random() * 10) + 1;
+  res.render("rand", { rand: num });
 });
 
 //use : to create a path pattern
 app.get("/r/:subreddit/", (req, res) => {
   const { subreddit } = req.params;
-  res.render('subreddit', { subreddit })
+  res.render("subreddit", { subreddit });
 });
 
-
 //this .post will still be as is if '*' in app.get was first because this is a post not a get..
-app.post("/cats", (req, res) => {
-  console.log("CAT POST REQUEST");
-  res.send("This is different than a get request");
+app.get("/cats", (req, res) => {
+  const cats = ["Blue", "Rocket", "Oreo", "Hippo", "Sunflower"];
+  res.render("cats", { cats })
 });
 
 app.get("/dogs", (req, res) => {
