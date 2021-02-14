@@ -2,9 +2,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
+const redditData = require("./data.json");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
+
+app.use(express.static(path.join(__dirname, "public")))
 
 //   app.use((req, res) => {
 //   console.log("WE GOT A NEW REQUEST");
@@ -25,18 +28,17 @@ app.get("/rand", (req, res) => {
 //use : to create a path pattern
 app.get("/r/:subreddit/", (req, res) => {
   const { subreddit } = req.params;
-  res.render("subreddit", { subreddit });
+  const data = redditData[subreddit];
+  if (data) {
+    res.render("subreddit", { ...data });
+  } else {
+    res.render('notfound', { subreddit })
+  }
 });
 
-//this .post will still be as is if '*' in app.get was first because this is a post not a get..
 app.get("/cats", (req, res) => {
   const cats = ["Blue", "Rocket", "Oreo", "Hippo", "Sunflower"];
-  res.render("cats", { cats })
-});
-
-app.get("/dogs", (req, res) => {
-  console.log("DOG REQUEST");
-  res.send("woof");
+  res.render("cats", { cats });
 });
 
 app.get("/search", (req, res) => {
