@@ -1,0 +1,31 @@
+<%- include("partials/header") %>
+<div class="container">
+    <h1>Create a New Listing</h1>
+  <form action="/listings" method="post">
+    <section>
+      <label for="title">Enter a Title</label>
+      <input type="text" name="title" id="title" />
+      <label for="host">Who's hosting?</label>
+      <input type="text" name="host" id="host" />
+    </section>
+    <section>
+      <label for="imgSrc">Upload Image Listing</label>
+      <input type="file" name="imgSrc" id="imgSrc" multiple />
+    </section>
+    <section>
+      <label for="price">Enter a price per night</label>
+      <input type="number" name="price" id="price" />
+      <br>
+      <label for="description">Enter a Description for your AirBnb</label>
+      <br>
+      <textarea
+        name="description"
+        id="description"
+        cols="40"
+        rows="5"
+      ></textarea>
+    </section>
+    <button>Create</button>
+  </form>
+</div>
+x <%- include("partials/footer") %>
