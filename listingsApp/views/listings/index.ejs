@@ -1,0 +1,21 @@
+
+<%- include("partials/header") %>
+    <div class="container">
+        <h1 class="text-center">All Airbnb Listings</h1>
+        <p class="text-center"><a href="#">Create a New Listing</a></p>
+        <% for(let l of listings){ %>
+            <div class="row">
+                <div class="col-sm"><h2><%= l.title %> - hosted by <%= l.host %></h2></div>
+            </div>
+            <div class="row">
+                <div class="col-sm"><img class="img-thumbnail" src="<%=l.imgSrc%>"></div>
+                <div class="col-sm align-self-center">
+                    <p><%= l.description %></p>
+                    <p class="text-end">$<%= l.price %> per night</p>
+                </div>
+            </div> 
+                <hr>
+        <% } %>    
+    </div>
+<%- include("partials/footer") %>
+        
