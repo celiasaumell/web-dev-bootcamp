@@ -3,14 +3,14 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
-const methodOverride = require("method-override")
+const methodOverride = require("method-override");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(methodOverride("_method"))
-const comments = [
+app.use(methodOverride("_method"));
+let comments = [
   {
     id: uuidv4(),
     username: "Todd",
@@ -67,6 +67,11 @@ app.patch("/comments/:id", (req, res) => {
   res.redirect("/comments");
 });
 
+app.delete("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  comments = comments.filter((c) => c.id !== id);
+  res.redirect("/comments")
+});
 app.listen(port, () => {
   console.log("On port", port);
 });
