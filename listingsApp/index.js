@@ -4,6 +4,7 @@ const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 let listings = require("./list");
 const methodOverride = require("method-override");
+const listing = require("./list");
 
 const app = express();
 const port = 3000;
@@ -39,11 +40,35 @@ app.get("/listings/:id", (req, res) => {
   res.render("listings/show", { listing });
 });
 
+app.get("/listings/:id/edit", (req, res) => {
+  const { id } = req.params;
+  const listing = listings.find((l) => l.id === id);
+  res.render("listings/edit", { listing });
+});
+
+app.patch("/listings/:id", (req, res) => {
+  const { id } = req.params;
+  const foundListing = listings.find((l) => l.id === id);
+  const updatedListing = req.body;
+  let {imgSrc} = req.body;
+  if (updatedListing.imgSrc === "") {
+    delete updatedListing.imgSrc;
+  } else {
+    updatedListing.imgSrc = `/images/${imgSrc}`;
+  }
+  for (let key in updatedListing) {
+    if(foundListing[key] !== updatedListing[key]){
+      foundListing[key] = updatedListing[key];
+    }
+  }
+  res.redirect("/listings");
+});
+
 app.delete("/listings/:id", (req, res) => {
   const { id } = req.params;
   listings = listings.filter((l) => l.id !== id);
   res.redirect("/listings");
-})
+});
 
 app.listen(port, () => {
   console.log(`Listing App listening at http://localhost:${port}`);

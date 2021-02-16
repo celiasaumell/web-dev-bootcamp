@@ -19,7 +19,7 @@
   <div class="row m-5">
     <div class="col-sm text-center">
       <a href="/listings">Back to Index</a> |
-      <a href="/listings/edit">Edit Listing</a> |
+      <a href="/listings/<%= listing.id %>/edit">Edit Listing</a> |
       <form action="/listings/<%= listing.id %>?_method=DELETE" method="POST">
         <button>Delete Listing</button>
     </form>
