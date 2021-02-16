@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+<div class="container">
+  <div class="row m-5">
+    <div class="col">
+      <h2 class="text-center">
+        <%= listing.title %> - hosted by <%= listing.host %>
+      </h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-sm text-center">
+      <img class="" src="<%=listing.imgSrc%>" />
+    </div>
+    <div class="col-sm align-self-center">
+      <p><%= listing.description %></p>
+      <p class="text-end">$<%= listing.price %> per night</p>
+    </div>
+  </div>
+  <div class="row m-5">
+    <div class="col-sm text-center">
+      <a href="/listings">Back to Index</a> |
+      <a href="/listings/edit">Edit Listing</a> |
+      <form action="/listings/<%= listing.id %>?_method=DELETE" method="POST">
+        <button>Delete Listing</button>
+    </form>
+    </div>
+  </div>
+</div>
+<%- include("partials/footer") %>
