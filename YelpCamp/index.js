@@ -59,7 +59,12 @@ app.put("/campgrounds/:id", async (req, res) => {
     req.params.id,
     req.body.campground
   );
-  res.redirect(`campgrounds/${campground._id}`);
+  res.redirect(`/campgrounds/${campground._id}`);
+});
+
+app.delete("/campgrounds/:id", async (req, res) => {
+  await Campground.findByIdAndDelete(req.params.id);
+  res.redirect("/campgrounds");
 });
 
 app.listen(3000, () => {
