@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+<div class="container">
+  <form action="/products" method="post">
+    <section>
+      <label for="name">Product Name</label>
+      <input type="text" name="name" id="product-name" />
+    </section>
+    <section>
+      <label for="price">Product Price</label>
+      <input type="number" name="price" id="product-price" />
+    </section>
+    <section>
+      <label for="category">Product Name</label>
+      <select name="category" id="category-select">
+        <option value="dairy">Dairy</option>
+        <option value="fruit">Fruit</option>
+        <option value="vegetable">Vegetable</option>
+      </select>
+    </section>
+
+    <button>Submit New Product</button>
+  </form>
+</div>
+<%- include("partials/footer") %>
