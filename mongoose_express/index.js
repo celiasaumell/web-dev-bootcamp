@@ -12,8 +12,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/products", async (req, res) => {
   const products = await Product.find({});
-  console.log(products);
-  res.send("all products will be here");
+  res.render("products/index", { products });
 });
 
 app.listen(3000, () => {
