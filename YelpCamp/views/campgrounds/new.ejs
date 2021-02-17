@@ -1,0 +1,14 @@
+<%- include("../includes/head") %> 
+<title>Create Campground</title>
+</head>
+<body>
+<h1>Create a new campground</h1>
+<form action="/campgrounds" method="POST">
+    <label for="title">Enter Title</label>
+    <input type="text" name="campground[title]" id="camp-title" placeholder="Title">
+    <label for="location">Enter Location</label>
+    <input type="text" name="campground[location]" id="camp-location" placeholder="City, State">
+    <button>Create</button>
+</form>
+    <a href="/campgrounds">Go Back to All</a>
+<%- include("../includes/footer") %> 
