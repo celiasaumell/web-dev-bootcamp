@@ -1,7 +1,5 @@
-<%- include("../includes/head") %> 
-<title>Create Campground</title>
-</head>
-<body>
+<% layout("/layouts/boilerplate") %> 
+
 <h1>Create a new campground</h1>
 <form action="/campgrounds" method="POST">
     <label for="title">Enter Title</label>
@@ -11,4 +9,3 @@
     <button>Create</button>
 </form>
     <a href="/campgrounds">Go Back to All</a>
-<%- include("../includes/footer") %> 

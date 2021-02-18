@@ -1,7 +1,4 @@
-<%- include("../includes/head") %> 
-<title>Campgrounds</title>
-</head>
-<body>
+<% layout("/layouts/boilerplate") %> 
 <h1>All Campgrounds</h1>
 <div>
     <a href="/campgrounds/new">Create a Campground</a>
@@ -11,4 +8,3 @@
     <li><a href="/campgrounds/<%=campground._id%>"><%= campground.title %></a></li>
     <% } %> 
 </ul>
-<%- include("../includes/footer") %> 

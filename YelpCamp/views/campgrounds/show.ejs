@@ -1,7 +1,4 @@
-<%- include("../includes/head") %> 
-<title><%= campground.title %></title>
-</head>
-<body>
+<% layout("/layouts/boilerplate") %> 
 <h1><%= campground.title %></h1>
 <h2><%= campground.location %> </h2>
 <a href="/campgrounds/<%= campground._id %>/edit">Edit This Campground</a>
@@ -9,4 +6,3 @@
 <button>Delete This Campground</button>
 </form>
 <footer><a href="/campgrounds">All Campgrounds</a></footer>
-<%- include("../includes/footer") %> 

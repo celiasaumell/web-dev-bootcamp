@@ -1,7 +1,4 @@
-<%- include("../includes/head") %> 
-<title>Edit Campground</title>
-</head>
-<body>
+<% layout("/layouts/boilerplate") %> 
 <h1>Edit campground</h1>
 <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
     <label for="title">Edit Title</label>
@@ -11,4 +8,4 @@
     <button>Edit</button>
 </form>
     <a href="/campgrounds">Cancel edit</a>
-<%- include("../includes/footer") %> 
+
