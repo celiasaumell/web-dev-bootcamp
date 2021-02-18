@@ -5,6 +5,9 @@ const CampgroundSchema = new Schema({
   title: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   price: {
     type: Number,
     minimum: 0,
