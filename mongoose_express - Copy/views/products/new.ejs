@@ -1,0 +1,33 @@
+<%- include("../partials/header") %>
+<div class="container">
+  
+  <% if (!farm) { %><h1>Add Product</h1><% } else { %> <h1>Add Product in <%= farm.name %></h1><% } %>  
+
+  <form
+    action="<% if(farm) { %>/farms/<%=farm._id%>/products<% } else { %>/products<% } %>"
+    method="post"
+  >
+    <section>
+      <label for="name">Product Name</label>
+      <input type="text" name="name" id="product-name" />
+    </section>
+    <section>
+      <label for="price">Product Price</label>
+      <input type="number" name="price" step="0.01" id="product-price" />
+    </section>
+    <section>
+      <label for="category">Product Name</label>
+      <select name="category" id="category-select">
+        <% for(let category of categories) { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% } %>
+      </select>
+    </section>
+
+    <button>Submit New Product</button>
+    <% if (farm) { %>
+    <a href="/farms/<%= farm._id %>">Back to Farm</a>
+    <% } %>
+  </form>
+</div>
+<%- include("../partials/footer") %>

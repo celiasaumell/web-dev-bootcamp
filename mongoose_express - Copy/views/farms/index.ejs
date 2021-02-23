@@ -1,0 +1,13 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <h1>All Farms</h1>
+  <ul>
+    <% for(let farm of farms) { %>
+    <li><a href="/farms/<%= farm._id %> "><%= farm.name %></a></li>
+    <% } %>
+  </ul>
+  <a href="/farms/new">Create a Farm listing</a>
+
+</div>
+
+<%- include("../partials/footer") %>

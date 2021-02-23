@@ -1,0 +1,22 @@
+<%- include("../partials/header") %>
+<div class="container">
+  <h1>Add a Farm</h1>
+  <form action="/farms" method="post">
+    <section>
+      <label for="name">Farm  Name</label>
+      <input type="text" name="name" id="farm-name" />
+    </section>
+    <section>
+      <label for="location">Farm location</label>
+      <input type="text" name="location" id="farm-location" />
+    </section>
+    <section>
+      <label for="email">Farm Email</label>
+      <input type="email" name="email" id="farm-email">
+       
+    </section>
+
+    <button>Submit New Farm</button>
+  </form>
+</div>
+<%- include("../partials/footer") %>
