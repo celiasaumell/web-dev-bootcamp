@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
 const Product = require("./models/product");
+const Farm = require("./models/farm");
 
 mongoose
   .connect("mongodb://localhost:27017/farmStand2", {
@@ -35,7 +36,60 @@ function wrapAsync(fn) {
     fn(req, res, next).catch((e) => next(e));
   };
 }
+// FARM ROUTES
 
+app.get(
+  "/farms",
+  wrapAsync(async (req, res) => {
+    const farms = await Farm.find({});
+    res.render("farms/index", { farms });
+  })
+);
+app.get("/farms/new", (req, res) => {
+  res.render("farms/new");
+});
+
+app.post(
+  "/farms",
+  wrapAsync(async (req, res) => {
+    const farm = new Farm(req.body);
+    await farm.save();
+    res.redirect("/farms");
+  })
+);
+
+app.get(
+  "/farms/:farm_id",
+  wrapAsync(async (req, res, next) => {
+    const { farm_id } = req.params;
+    const farm = await Farm.findById(farm_id).populate("products");
+    if (!farm) {
+      throw new AppError(404, "Farm Not Found");
+    }
+    res.render("farms/show", { farm });
+  })
+);
+
+app.get("/farms/:farm_id/products/new", (req, res) => {
+  const { farm_id } = req.params;
+  res.render("products/new", { categories, farm_id });
+});
+
+app.post(
+  "/farms/:farm_id/products",
+  wrapAsync(async (req, res) => {
+    const { farm_id } = req.params;
+    const farm = await Farm.findById(farm_id);
+    const product = new Product(req.body);
+    farm.products.push(product);
+    product.farm = farm;
+    await farm.save();
+    await product.save();
+    res.redirect(`/farms/${farm_id}`)
+  })
+);
+
+// PRODUCT ROUTES
 app.get(
   "/products",
   wrapAsync(async (req, res) => {
@@ -109,17 +163,16 @@ app.delete(
   })
 );
 
-const handleValidationErr = err => {
+const handleValidationErr = (err) => {
   console.dir(err);
   return new AppError(400, `Validation failed...${err.message}`);
-}
+};
 
 app.use((err, req, res, next) => {
   console.log(err.name);
-  if(err.name === 'ValidationError') err = handleValidationErr(err)
+  if (err.name === "ValidationError") err = handleValidationErr(err);
   next(err);
 });
-
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "Something went wrong" } = err;
