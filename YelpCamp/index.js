@@ -60,6 +60,7 @@ app.get(
   "/campgrounds/:id",
   wrapAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
+    if(!campground) throw new AppError(400, "Campground not found")
     res.render("campgrounds/show", { campground });
   })
 );
@@ -76,9 +77,6 @@ app.post(
   "/campgrounds",
   validateCampground,
   wrapAsync(async (req, res) => {
-    // if (!req.body.campgrounds)
-    //   throw new AppError(400, "Invalid Campground Data");
-
     const campground = new Campground(req.body.campground);
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
