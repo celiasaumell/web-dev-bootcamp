@@ -1,5 +1,6 @@
 <%- include("../partials/header") %>
 <div class="container">
+  <%= messages %> 
   <h1><%= farm.name %></h1>
   <ul>
     <li>City: <% if(!farm.location) { %> N/A <% } else { %> <%= farm.location %><% } %> </li>

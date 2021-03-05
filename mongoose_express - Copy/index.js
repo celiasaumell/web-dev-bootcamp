@@ -3,6 +3,15 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const session = require("express-session");
+const flash = require("connect-flash");
+const sessionOptions = {
+  secret: "thisisnotagoodsecret",
+  resave: false,
+  saveUninitialized: false,
+};
+app.use(session(sessionOptions));
+app.use(flash());
 
 const Product = require("./models/product");
 const Farm = require("./models/farm");
@@ -37,6 +46,10 @@ function wrapAsync(fn) {
   };
 }
 // FARM ROUTES
+app.use((req, res, next) => {
+  res.locals.messages = req.flash("success");
+  next();
+});
 
 app.get(
   "/farms",
@@ -45,6 +58,7 @@ app.get(
     res.render("farms/index", { farms });
   })
 );
+
 app.get("/farms/new", (req, res) => {
   res.render("farms/new");
 });
@@ -54,6 +68,7 @@ app.post(
   wrapAsync(async (req, res) => {
     const farm = new Farm(req.body);
     await farm.save();
+    req.flash("success", "Successfully made a new farm!");
     res.redirect("/farms");
   })
 );
@@ -89,6 +104,7 @@ app.post(
     product.farm = farm;
     await farm.save();
     await product.save();
+    req.flash("success", `Successfully added ${product.name} to ${farm.name}`);
     res.redirect(`/farms/${farm_id}`);
   })
 );
@@ -96,9 +112,9 @@ app.post(
 app.delete(
   "/farms/:farm_id",
   wrapAsync(async (req, res) => {
-    const {farm_id} = req.params;
-    const farm = await Farm.findByIdAndDelete(farm_id)
-    res.redirect("/farms")
+    const { farm_id } = req.params;
+    const farm = await Farm.findByIdAndDelete(farm_id);
+    res.redirect("/farms");
   })
 );
 
