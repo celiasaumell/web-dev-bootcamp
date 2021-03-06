@@ -9,6 +9,8 @@ const AppError = require("./utilities/AppError");
 const wrapAsync = require("./utilities/wrapAsync");
 const { campgroundSchema, reviewSchema } = require("./schemas");
 const campgrounds = require("./routes/campgrounds");
+const reviews = require("./routes/reviews");
+
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
   useNewUrlParser: true,
@@ -32,62 +34,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-const validateCampground = (req, res, next) => {
-  const { error } = campgroundSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map((e) => e.message).join(",");
-    throw new AppError(400, msg);
-  } else {
-    next();
-  }
-};
-
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map((e) => e.message).join(",");
-    throw new AppError(400, msg);
-  } else {
-    next();
-  }
-};
 app.use("/campgrounds", campgrounds);
+app.use("/campgrounds/:id/reviews", reviews);
 
 app.get("/", (req, res) => {
   res.render("campgrounds/home");
 });
-
-app.post(
-  "/campgrounds/:id/reviews",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
-    const review = new Review(req.body.review);
-    campground.reviews.push(review);
-    await review.save();
-    await campground.save();
-    res.redirect(`/campgrounds/${campground.id}`);
-  })
-);
-app.delete(
-  "/campgrounds/:id/reviews/:reviewId",
-  wrapAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-    await Campground.findByIdAndUpdate(
-      id,
-      { $pull: { reviews: reviewId } },
-      { new: true }
-    );
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/campgrounds/${id}`);
-  })
-);
-// app.put(
-//   "/campgrounds/:id/reviews/:reviewId",
-//   wrapAsync(async (req, res) => {
-
-//   })
-// );
 
 app.all("*", (req, res, next) => {
   next(new AppError(404, "Page not found"));
