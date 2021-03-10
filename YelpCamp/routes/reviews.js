@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams: true });
 
 const AppError = require("../utilities/AppError");
 const wrapAsync = require("../utilities/wrapAsync");
-const { validateReview, isLoggedIn } = require("../utilities/middleware");
+const { validateReview, isLoggedIn, isAuthor } = require("../utilities/middleware");
 
 const Review = require("../models/review");
 const Campground = require("../models/campground");
@@ -13,11 +13,12 @@ const { reviewSchema } = require("../schemas");
 
 router.post(
   "/",
-  validateReview,
   isLoggedIn,
+  validateReview,
   wrapAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
+    review.author = req.user._id;
     campground.reviews.push(review);
     await review.save();
     await campground.save();
@@ -29,6 +30,7 @@ router.post(
 router.delete(
   "/:reviewId",
   isLoggedIn,
+  isAuthor,
   wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Campground.findByIdAndUpdate(

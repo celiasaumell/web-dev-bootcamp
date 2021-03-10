@@ -3,12 +3,8 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
-const Campground = require("./models/campground");
-const Review = require("./models/review");
 const methodOverride = require("method-override");
 const AppError = require("./utilities/AppError");
-const wrapAsync = require("./utilities/wrapAsync");
-const { campgroundSchema, reviewSchema } = require("./schemas");
 
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
