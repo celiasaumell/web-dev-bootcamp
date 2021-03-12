@@ -9,18 +9,19 @@ const Campground = require("../models/campground");
 
 const { campgroundSchema } = require("../schemas");
 
-router.get("/", wrapAsync(campgrounds.index));
+router
+  .route("/")
+  .get(wrapAsync(campgrounds.index))
+  .post(isLoggedIn, validateCampground, wrapAsync(campgrounds.createCampground));
 
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 
-router.post("/", isLoggedIn, validateCampground, wrapAsync(campgrounds.createCampground));
-
-router.get("/:id", wrapAsync(campgrounds.showCampground));
+router
+  .route("/:id")
+  .get(wrapAsync(campgrounds.showCampground))
+  .put(isLoggedIn, isAuthor, validateCampground, wrapAsync(campgrounds.editCampground))
+  .delete(isLoggedIn, isAuthor, wrapAsync(campgrounds.deleteCampground));
 
 router.get("/:id/edit", isLoggedIn, isAuthor, wrapAsync(campgrounds.editCampgroundForm));
-
-router.put("/:id", isLoggedIn, isAuthor, validateCampground, wrapAsync(campgrounds.editCampground));
-
-router.delete("/:id", isLoggedIn, isAuthor, wrapAsync(campgrounds.deleteCampground));
-
+ 
 module.exports = router;
