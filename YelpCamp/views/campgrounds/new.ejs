@@ -3,7 +3,13 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form enctype="multipart/form-data" action="/campgrounds" method="POST" novalidate class="validated-form">
+    <form
+      enctype="multipart/form-data"
+      action="/campgrounds"
+      method="POST"
+      novalidate
+      class="validated-form"
+    >
       <div class="mb-3">
         <label class="form-label" for="title">Enter Title</label>
         <input
@@ -14,9 +20,7 @@
           placeholder="Title"
           required
         />
-        <div class="valid-feedback">
-          Looks good!
-        </div>
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Enter Location</label>
@@ -28,18 +32,9 @@
           placeholder="City, State"
           required
         />
-        <div class="valid-feedback">
-          Looks good!
-        </div>
+        <div class="valid-feedback">Looks good!</div>
       </div>
-      <!-- <div class="mb-3">
-        <label class="form-label" for="image">Image Url</label>
-        <input class="form-control" type="text" name="campground[image]" required />
-        <div class="valid-feedback">
-          Looks good!
-        </div>
-      </div> -->
-      <input type="file" name="image" id="" multiple>
+
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
         <div class="input-group mb-3">
@@ -64,9 +59,11 @@
           id="camp-description"
           required
         ></textarea>
-        <div class="valid-feedback">
-          Looks good!
-        </div>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label for="uploadCampgroundImg" class="form-label">Upload Campground Images</label>
+        <input name="image" class="form-control" type="file" id="uploadCampgroundImg" multiple />
       </div>
       <div class="mb-3">
         <button class="btn btn-success">Create</button>
@@ -75,4 +72,3 @@
     <a href="/campgrounds">Go Back to All</a>
   </div>
 </div>
-
