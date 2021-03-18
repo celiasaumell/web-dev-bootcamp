@@ -1,4 +1,7 @@
 const Campground = require("../models/campground");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
@@ -36,14 +39,19 @@ module.exports.editCampgroundForm = async (req, res) => {
   res.render("campgrounds/edit", { campground });
 };
 
-module.exports.createCampground = async (req, res) => {
-  const campground = new Campground(req.body.campground);
-  campground.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-  campground.author = req.user._id;
-  await campground.save();
-  console.log(campground);
-  req.flash("success", "Successfully made a new campground!");
-  res.redirect(`/campgrounds/${campground._id}`);
+const geoData = await geocoder.forwardGeocode({
+  query: 'Yosemite, CA',
+  limit: 1
+}).send();
+console.log(geoData);
+res.send("ok!")
+  // const campground = new Campground(req.body.campground);
+  // campground.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+  // campground.author = req.user._id;
+  // await campground.save();
+  // console.log(campground);
+  // req.flash("success", "Successfully made a new campground!");
+  // res.redirect(`/campgrounds/${campground._id}`);
 };
 
 module.exports.editCampground = async (req, res) => {
@@ -54,8 +62,8 @@ module.exports.editCampground = async (req, res) => {
   campground.images.push(...imgs);
   await campground.save();
   if (req.body.deleteImages) {
-    for(let filename of req.body.deleteImages){
-      await cloudinary.uploader.destroy(filename)
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
     }
     await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
   }
