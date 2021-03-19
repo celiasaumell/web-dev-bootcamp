@@ -23,8 +23,19 @@ const CampgroundSchema = new Schema({
   description: {
     type: String,
   },
+  geometry: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  },
   location: {
-    type: String,
+    type: String
   },
   author: {
     type: Schema.Types.ObjectId,
