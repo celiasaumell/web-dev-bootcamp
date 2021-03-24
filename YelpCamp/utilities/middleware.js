@@ -3,6 +3,11 @@ const Review = require("../models/review");
 const { campgroundSchema, reviewSchema } = require("../schemas");
 const AppError = require("../utilities/AppError");
 
+module.exports.getPreviousPage = (req, res, next) => {
+  req.session.returnTo = req.originalUrl;
+  next();
+}
+
 module.exports.isLoggedIn = (req, res, next) => {
   console.log("REQ.USER...", req.user);
   if (!req.isAuthenticated()) {
